@@ -11,9 +11,9 @@ export default function ProductCard(){
 
   return (
       <div className="relative">
-          <Card className="w-full max-w-[180px] rounded-xl border shadow-sm hover:shadow-md transition-all cursor-pointer">
+          <Card className="w-full max-w-[260px] rounded-xl border shadow-sm hover:shadow-md transition-all cursor-pointer">
               <CardContent className="p-4 flex flex-col items-center">
-                  <div className="relative w-[80px] h-[80px] mb-2">
+                  <div className="relative w-[120px] h-[120px] mb-2">
                       <Image
                           src="/globe.svg"
                           alt="Kit de arrastre"
@@ -37,7 +37,6 @@ export default function ProductCard(){
                       <FaWhatsapp className="text-lg" />
                       Comprar
                   </button>
-
               </CardContent>
           </Card>
 

@@ -4,7 +4,7 @@ import { Category } from "./types";
 export const CategorySchema = z.object({
   id: z.string().optional(),
   companyId: z.string(),
-  name: z.string().min(4, {
+  name: z.string().min(3, {
     message: "El nombre de la categoría debe tener al menos 4 caracteres",
   }),
   updatedAt: z.coerce.date().optional(),

@@ -17,10 +17,8 @@ interface NewSectionDialogProps {
 export default function CategoriesModal({
   addCategory,
 }: NewSectionDialogProps) {
-  const { categories, updateCategory } = useCategoryStore(store => ({
-    categories: store.categories,
-    updateCategory: store.updateCategory,
-  }))
+  const categories = useCategoryStore(store => store.categories);
+  const updateCategory = useCategoryStore(store => store.updateCategory);
 
   return (
     <Dialog>

@@ -3,6 +3,7 @@ import ProductCard from "@/product/components/product-card";
 import Footer from "@/shared/footer/footer";
 import Navbar from "@/shared/nav-var/navar";
 import Slide from "@/shared/slide/slide";
+import Brand from "@/shared/brand/brand";
 
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <>
           <Navbar />
           <Slide />
+          <Brand />
           <section className="max-w-7xl mx-auto px-4 mb-6">
               <h2 className="text-center text-2xl font-extrabold tracking-wide">
                   <span className="text-orange-500">PRODUCTOS</span> DESTACADOS

@@ -3,7 +3,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "../data-table/cell-action";
 import { Product, SingleProductType } from "@/product/types";
 import { formatPrice } from "@/lib/utils";
-import { UNIT_TYPE_MAPPER } from "@/product/constants";
 
 export const columns: ColumnDef<Product>[] = [
   {

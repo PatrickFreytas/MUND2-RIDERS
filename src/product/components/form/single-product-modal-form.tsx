@@ -6,7 +6,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogFooter,
+  DialogFooter, DialogHeader, DialogTitle,
 } from "@/shared/components/ui/dialog";
 import {ScrollArea} from "@/shared/components/ui/scroll-area";
 import * as z from "zod";
@@ -322,16 +322,9 @@ const SingleProductModalForm: React.FC<ProductFormProps> = ({
     >
       <DialogContent className="w-full h-full sm:max-w-[750px] sm:h-[750px] flex flex-col justify-center items-center p-0">
         <ScrollArea className="p-6 w-full">
-          <div className="flex items-center justify-between">
-            <Heading title={title}/>
-            {!formStore.isNew && (
-              <div className="flex items-center space-x-1 mr-8">
-                <label className="text-sm">Transformar producto</label>
-                <Switch onCheckedChange={handleSwitchChange}/>
-                <HelpTooltip text="Activa para poder traspasar stock"/>
-              </div>
-            )}
-          </div>
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+          </DialogHeader>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}

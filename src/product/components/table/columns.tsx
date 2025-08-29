@@ -21,19 +21,12 @@ export const columns: ColumnDef<Product>[] = [
     header: "CANTIDAD",
     cell: ({ row }) =>
       row.original.type === SingleProductType &&
-      `${row.original.stock} ${UNIT_TYPE_MAPPER[row.original.unitType]}`,
+      `${row.original.stock}`,
   },
   {
     accessorKey: "purchasePrice",
     header: "PRECIO DE VENTA",
     cell: ({ row }) => formatPrice(row.original.price),
-  },
-  {
-    accessorKey: "price",
-    header: "PRECIO DE COMPRA",
-    cell: ({ row }) =>
-      row.original.type === SingleProductType &&
-      formatPrice(row.original.purchasePrice),
   },
   {
     accessorKey: "sku",

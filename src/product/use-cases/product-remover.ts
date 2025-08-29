@@ -1,6 +1,5 @@
 import { Product } from "@/product/types";
 import { response } from "@/lib/types";
-import { log } from "@/lib/log";
 
 export type ProductRemover = (product: Product) => Promise<response<Product>>;
 
@@ -24,8 +23,6 @@ export default function productRemoverCreator(
     const deleteResponse = await removeRepository(product);
 
     if (!deleteResponse.success) {
-      log.error("delete_product_failed", { deleteResponse, product });
-
       return {
         success: false,
         message: "Error al eliminar el producto, comuniquese con soporte",

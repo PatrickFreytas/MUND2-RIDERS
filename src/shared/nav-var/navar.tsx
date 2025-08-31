@@ -13,12 +13,13 @@ export default function Navbar() {
                 />
             </div>
 
-            {/* Barra de búsqueda */}
+
             <input
                 type="text"
-                placeholder="Buscar..."
-                className="flex-grow max-w-lg rounded-md px-4 py-2 text-black"
+                placeholder=""
+                className="flex-grow max-w-lg rounded-md px-4 py-2 bg-white text-black"
             />
+
 
             {/* Links */}
             <ul className="flex gap-6 text-base font-medium">

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Navbar() {
     return (
         <nav className="bg-black text-white max-w-full">
-            
+
             <div className="flex items-center px-6 py-3 gap-6">
                 <div className="w-28 h-12 relative flex-shrink-0">
                     <Image src="/globe.svg" alt="Logo" fill className="object-contain" />

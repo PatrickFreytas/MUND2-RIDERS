@@ -33,6 +33,7 @@ import {
   ShoppingCart,
   ReceiptText,
   PackageCheck,
+  House
 } from "lucide-react";
 import { FaCashRegister } from "react-icons/fa";
 import { HiOutlineDocumentReport } from "react-icons/hi";
@@ -41,6 +42,7 @@ export type Icon = LucideIcon;
 
 export const Icons = {
   dashboard: LayoutDashboardIcon,
+  home: House,
   logo: Command,
   login: LogIn,
   close: X,

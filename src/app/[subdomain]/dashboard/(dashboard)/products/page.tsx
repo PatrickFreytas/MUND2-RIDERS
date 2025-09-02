@@ -22,14 +22,10 @@ async function ProductsWithSuspense({ searchParams }: ParamsProps) {
   const session = await getSession();
   if (!session.user) return <SignOutRedirection />;
 
-  const page = typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
-  const size = typeof searchParams.size === "string" ? Number(searchParams.size) : 10;
-
-
   const params: GetManyParams = {
     companyId: session.user.companyId,
-    pageNumber: page,
-    limit: size,
+    pageNumber: Number(searchParams.page) || 1,
+    limit: Number(searchParams.size) || 10,
   };
 
   if (searchParams.q) {
@@ -50,7 +46,9 @@ async function ProductsWithSuspense({ searchParams }: ParamsProps) {
       data={productsResponse.data}
       columns={columns}
       searchTextPlaceholder={"Buscar producto por nombre o sku"}
-      pageCount={Math.ceil(productsCountResponse.data / size)}
+      pageCount={Math.ceil(
+        productsCountResponse.data / (Number(searchParams.size) || 10),
+      )}
       allowSearch
     />
   );

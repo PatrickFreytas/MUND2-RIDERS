@@ -1,0 +1,42 @@
+"use client";
+
+import { Button } from "@/shared/components/ui/button";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { Boxes, Plus } from "lucide-react";
+import { HelpTooltip } from "@/shared/components/ui/help-tooltip";
+import React, { SyntheticEvent } from "react";
+import { useProductFormStore } from "@/product/components/form/product-form-store-provider";
+import { SingleProductType } from "@/product/types";
+
+export default function AddProductButtons() {
+  const { resetProduct, setOpen, performingAction } = useProductFormStore(
+    (store) => store,
+  );
+
+  const onNewProductClick = (e: SyntheticEvent) => {
+    e.preventDefault();
+    resetProduct(SingleProductType);
+    setOpen(true);
+  };
+
+  return (
+    <div className="flex">
+      <Button
+        type="button"
+        variant="outline"
+        className="text-xs md:text-sm mr-2 justify-start"
+        onClick={onNewProductClick}
+      >
+        {performingAction ? (
+          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+        ) : (
+          <>
+            <Plus className="mr-2 h-4 w-4" />
+            <span>Agregar producto</span>
+            <HelpTooltip text="Agrega un nuevo Producto" />
+          </>
+        )}
+      </Button>
+    </div>
+  );
+}

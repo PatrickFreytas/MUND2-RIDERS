@@ -1,6 +1,6 @@
 "use client";
 
-import { getCompany } from "@/order/actions";
+import { getCompany } from "@/user/actions";
 import { signOut as nextAuthSignOut } from "next-auth/react";
 
 export default function useSignOut() {

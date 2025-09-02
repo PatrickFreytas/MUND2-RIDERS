@@ -20,7 +20,7 @@ export default function FileUpload({
   const { toast } = useToast();
 
   const onDeleteFile = (key: string) => {
-    let filteredFiles = value.filter((item) => item.key !== key);
+    const filteredFiles = value.filter((item) => item.key !== key);
     onChange(filteredFiles);
   };
 
@@ -33,7 +33,7 @@ export default function FileUpload({
       <div>
         {value.length < IMG_MAX_LIMIT && (
           <UploadDropzone
-            className="dark:bg-zinc-800 py-2 ut-label:text-sm ut-allowed-content:ut-uploading:text-red-300"
+            className="white:bg-zinc-800 py-2 ut-label:text-sm ut-allowed-content:ut-uploading:text-red-300"
             endpoint="imageUploader"
             config={{mode: "auto"}}
             content={{

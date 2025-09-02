@@ -77,7 +77,13 @@ export const create = async (product: Product): Promise<response<Product>> => {
   await prisma().product.update({
     where: { id: response.data.id },
     data: {
-      photos: product.photos ? { create: product.photos } : undefined,
+      photos: product.photos
+        ? {
+          create: product.photos.map((photo) => ({
+            ...photo,
+          })),
+        }
+        : undefined,
       categories: product.categories
         ? { connect: product.categories.map((c) => ({ id: c.id })) }
         : undefined,
@@ -304,12 +310,18 @@ export const storePhotos = async (
     (photo) =>
       !(productPhotosResponse.data || []).find((p) => p.key === photo.key),
   );
+
   try {
+    console.log("Guardando foto con datos:", photosToStore);
     const createdPhotos = await Promise.all(
-      photosToStore.map((photo) =>
+      photosToStore.map(({ name, key, url, size, type }) =>
         prisma().photo.create({
           data: {
-            ...photo,
+            name,
+            key,
+            url,
+            size,
+            type,
             productId,
           },
         }),

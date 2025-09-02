@@ -6,7 +6,7 @@ import { Boxes, Plus } from "lucide-react";
 import { HelpTooltip } from "@/shared/components/ui/help-tooltip";
 import React, { SyntheticEvent } from "react";
 import { useProductFormStore } from "@/product/components/form/product-form-store-provider";
-import { PackageProductType, SingleProductType } from "@/product/types";
+import { SingleProductType } from "@/product/types";
 
 export default function AddProductButtons() {
   const { resetProduct, setOpen, performingAction } = useProductFormStore(
@@ -16,12 +16,6 @@ export default function AddProductButtons() {
   const onNewProductClick = (e: SyntheticEvent) => {
     e.preventDefault();
     resetProduct(SingleProductType);
-    setOpen(true);
-  };
-
-  const onNewPackageClick = (e: SyntheticEvent) => {
-    e.preventDefault();
-    resetProduct(PackageProductType);
     setOpen(true);
   };
 

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+
+    /* Language and Environment */
+    "target": "ES2017",                                 /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": ["es2017"],                                       /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+
+    /* Modules */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
+    "noEmitHelpers": false,                            /* Disable generating custom helper functions like '__extends' in compiled output. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "paths": {
+      "@/*": ["../*"]
+    },
+
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  }
+}

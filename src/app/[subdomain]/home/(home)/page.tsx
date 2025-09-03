@@ -1,3 +1,5 @@
+import Brand from "@/shared/brand/brand";
+
 export default function HomePage() {
   return (
     <>

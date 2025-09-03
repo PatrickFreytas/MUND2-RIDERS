@@ -1,4 +1,5 @@
 import Brand from "@/shared/brand/brand";
+import Navbar from "@/shared/nav-bar/navbar";
 
 export default function HomePage() {
   return (

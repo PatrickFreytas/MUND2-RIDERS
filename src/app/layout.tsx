@@ -24,20 +24,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authConfig)
-
+  const bodyClass = cn(
+    "min-h-screen bg-background font-sans antialiased",
+    fontSans.className
+  );
   return (
     <html lang="en">
-    <body
-      className={cn(
-        "min-h-screen bg-background font-sans antialiased",
-        fontSans.variable,
-      )}
-    >
+    <body className={bodyClass} >
     <Providers session={session}>
       {children}
     </Providers>
-    <Toaster />
-    <SpeedInsights />
+    <Toaster/>
+    <SpeedInsights/>
     </body>
     </html>
   );

@@ -13,23 +13,25 @@ import SignOutRedirection from "@/shared/components/sign-out-redirection";
 const breadcrumbItems = [{ title: "Productos", link: "/products" }];
 
 type ParamsProps = {
-  searchParams: {
+  searchParams: Promise<{
     [key: string]: string | string[] | undefined;
-  };
+  }>;
 };
 
 async function ProductsWithSuspense({ searchParams }: ParamsProps) {
   const session = await getSession();
+  const paramsPromise = await searchParams;
+
   if (!session.user) return <SignOutRedirection />;
 
   const params: GetManyParams = {
     companyId: session.user.companyId,
-    pageNumber: Number(searchParams.page) || 1,
-    limit: Number(searchParams.size) || 10,
+    pageNumber: Number(paramsPromise.page) || 1,
+    limit: Number(paramsPromise.size) || 10,
   };
 
-  if (searchParams.q) {
-    params.q = searchParams.q as string;
+  if (paramsPromise.q) {
+    params.q = paramsPromise.q as string;
   }
 
   const [productsResponse, productsCountResponse] = await Promise.all([
@@ -47,7 +49,7 @@ async function ProductsWithSuspense({ searchParams }: ParamsProps) {
       columns={columns}
       searchTextPlaceholder={"Buscar producto por nombre o sku"}
       pageCount={Math.ceil(
-        productsCountResponse.data / (Number(searchParams.size) || 10),
+        productsCountResponse.data / (Number(paramsPromise.size) || 10),
       )}
       allowSearch
     />

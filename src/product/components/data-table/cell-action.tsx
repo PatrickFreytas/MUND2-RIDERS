@@ -69,13 +69,6 @@ export const CellAction: React.FC<CellActionProps> = ({ product }) => {
           <DropdownMenuItem onClick={() => setProduct(product)}>
             <Edit className="mr-2 h-4 w-4" /> Editar
           </DropdownMenuItem>
-          {product.type === SingleProductType &&
-            product.stock > 0 &&
-            product.stockConfig && (
-              <DropdownMenuItem onClick={() => setMovementStockModalOpen(true)}>
-                <PackageOpen className="mr-2 h-4 w-4" /> Mover stock
-              </DropdownMenuItem>
-            )}
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className="mr-2 h-4 w-4" /> Eliminar
           </DropdownMenuItem>

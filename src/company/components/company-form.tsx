@@ -45,7 +45,6 @@ const CompanyFormSchema = zod.object({
   phone: zod
     .string()
     .optional(),
-  ruc: zod.string().length(11, "El ruc debe tener 11 digitos").optional(),
   address: zod
     .string()
     .min(6, { message: "La dirección debe tener al menos 6 caracteres" }),
@@ -78,7 +77,6 @@ export default function CompanyForm({ company }: { company: Company }) {
     const response = await updateCompany({
       ...company,
       ...data,
-      ruc: data["ruc"],
     });
 
     if (!response.success) {
@@ -174,19 +172,6 @@ export default function CompanyForm({ company }: { company: Company }) {
                   <FormLabel>Nombre Comercial</FormLabel>
                   <FormControl>
                     <Input placeholder="Nombre Comercial" {...field} />
-                  </FormControl>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="ruc"
-              render={({field}) => (
-                <FormItem className="my-2 max-w-sm">
-                  <FormLabel>Ruc</FormLabel>
-                  <FormControl>
-                    <Input placeholder="ej: 10326545678" {...field} />
                   </FormControl>
                   <FormMessage/>
                 </FormItem>

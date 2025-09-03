@@ -10,8 +10,9 @@ import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } },
+  context:any,
 ) {
+  const id = context.params.id;
   const session = await getSession();
   if (!session.user) {
     return NextResponse.json(
@@ -22,7 +23,7 @@ export async function PUT(
   const productData: SingleProduct = await req.json();
 
   const findProductResponse = await findProduct(
-    params.id,
+    id,
     session.user.companyId,
   );
   if (!findProductResponse.success) {
@@ -45,7 +46,7 @@ export async function PUT(
   }
 
   const updateResponse = await UpdateProduct(productData);
-  revalidatePath("/products/" + params.id);
+  revalidatePath("/products/" + id);
   return NextResponse.json(updateResponse, {
     status: updateResponse.success ? 200 : 400,
   });
@@ -53,8 +54,9 @@ export async function PUT(
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string } },
+  context:any,
 ) {
+  const id = context.params.id;
   const session = await getSession();
   if (!session.user) {
     return NextResponse.json(
@@ -63,7 +65,7 @@ export async function DELETE(
     );
   }
   const findProductResponse = await findProduct(
-    params.id,
+    id,
     session.user.companyId,
   );
   if (!findProductResponse.success) {
@@ -81,8 +83,9 @@ export async function DELETE(
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } },
+  context:any,
 ) {
+  const id = context.params.id;
   const session = await getSession();
   if (!session.user) {
     return NextResponse.json(
@@ -91,10 +94,10 @@ export async function GET(
     );
   }
 
-  let response = await findProduct(params.id, session.user.companyId);
+  let response = await findProduct(id, session.user.companyId);
   if (!response.success) {
     response = await findBy({
-      sku: params.id,
+      sku: id,
       companyId: session.user.companyId,
     });
   }

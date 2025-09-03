@@ -3,9 +3,10 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string; photoId: string } },
+  context: any,
 ) {
-  const findProductResponse = await findProduct(params.id);
+  const { id, photoId } = context.params;
+  const findProductResponse = await findProduct(id);
   if (!findProductResponse.success) {
     return NextResponse.json(
       { success: false, message: "Product not found" },
@@ -15,7 +16,7 @@ export async function DELETE(
 
   const response = await removePhoto(
     findProductResponse.data.id as string,
-    params.photoId,
+    photoId,
   );
 
   return NextResponse.json(response, { status: response.success ? 200 : 400 });

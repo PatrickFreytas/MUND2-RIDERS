@@ -10,11 +10,12 @@ import { Category } from "@/category/types";
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } },
+  context:any,
 ) {
+  const id = context.params.id;
   const categoryData: Category = await req.json();
 
-  const findProductResponse = await findCategory(params.id);
+  const findProductResponse = await findCategory(id);
   if (!findProductResponse.success) {
     return NextResponse.json(
       { success: false, message: "Category not found" },
@@ -23,7 +24,7 @@ export async function PUT(
   }
 
   const updateResponse = await UpdateCategory(categoryData);
-  revalidatePath("/categories/" + params.id);
+  revalidatePath("/categories/" + id);
   return NextResponse.json(updateResponse, {
     status: updateResponse.success ? 200 : 400,
   });
@@ -31,8 +32,9 @@ export async function PUT(
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string } },
+  context:any,
 ) {
+  const id = context.params.id;
   const session = await getSession();
   if (!session.user) {
     return NextResponse.json(
@@ -41,7 +43,7 @@ export async function DELETE(
     );
   }
 
-  const findCategoryResponse = await findCategory(params.id);
+  const findCategoryResponse = await findCategory(id);
   if (!findCategoryResponse.success) {
     return NextResponse.json(
       { success: false, message: "Product not found" },

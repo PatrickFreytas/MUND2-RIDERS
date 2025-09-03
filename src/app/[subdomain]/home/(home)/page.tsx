@@ -2,6 +2,7 @@ import Brand from "@/shared/brand/brand";
 import Navbar from "@/shared/nav-bar/navbar";
 import Slider from "@/shared/slide/slider";
 import ProductCard from "@/product/components/product-card";
+import Footer from "@/shared/footer/footer";
 
 export default function HomePage() {
   return (

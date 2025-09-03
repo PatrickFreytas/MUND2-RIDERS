@@ -6,9 +6,9 @@ export default function HomeLayout({
   return (
     <html lang="en">
       <body>
-        <header>Header Público</header>
+        <header></header>
           <main>{children}</main>
-        <footer>Footer Público</footer>
+        <footer></footer>
       </body>
     </html>
   );

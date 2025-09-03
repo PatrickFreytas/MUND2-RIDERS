@@ -2,7 +2,6 @@ import prisma from "@/lib/prisma";
 import { Category } from "./types";
 import { Product } from "@/product/types";
 import { response } from "@/lib/types";
-import { Category as PrismaCategory, Prisma } from "@prisma/client";
 
 export const create = async (
   category: Category,
@@ -21,8 +20,11 @@ export const create = async (
         companyId: createdCategory.companyId || "some_company_id",
       },
     };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -37,8 +39,11 @@ export const update = async (
       data: category,
     });
     return { success: true, data: category };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -50,8 +55,11 @@ export const deleteCategory = async (
       where: { id: category.id },
     });
     return { success: true, data: category };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -67,8 +75,11 @@ export const getMany = async (
     }));
 
     return { success: true, data: categories };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -87,8 +98,11 @@ export const find = async (id: string): Promise<response<Category>> => {
     } else {
       return { success: false, message: "Category not found" };
     }
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -107,8 +121,11 @@ export const addCategoryToProduct = async (
     });
 
     return { success: true, data: category };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -126,8 +143,11 @@ export const removeCategoryFromProduct = async (
       },
     });
     return { success: true, data: category };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -158,7 +178,10 @@ const findByName = async (
     } else {
       return { success: false, message: "Category not found" };
     }
-  } catch (error: any) {
-    return { success: false, message: error.message } as response;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };

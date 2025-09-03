@@ -1,12 +1,10 @@
 import { create, findBy, getMany } from "@/product/db_repository";
 import productCreator from "@/product/use-cases/product-creator";
 import {
-  PackageProductType,
   Product,
   ProductSortParams,
   SingleProductType,
   SortKey,
-  TypePackageProductType,
   TypeSingleProductType,
 } from "@/product/types";
 import { NextResponse } from "next/server";
@@ -43,7 +41,7 @@ export async function GET(req: Request) {
   const limit = searchParams.get("limit");
   const productType = searchParams.get("productType") || undefined;
 
-  let sortBy: ProductSortParams =
+  const sortBy: ProductSortParams =
     sortKey && sortOptions[sortKey]
       ? sortOptions[sortKey]!.value
       : { createdAt: "desc" };
@@ -62,8 +60,6 @@ export async function GET(req: Request) {
 
 const ensureProductType = (
   type?: string,
-): TypePackageProductType | TypeSingleProductType | undefined => {
-  return type === SingleProductType || type === PackageProductType
-    ? type
-    : undefined;
+): TypeSingleProductType | undefined => {
+  return SingleProductType
 };

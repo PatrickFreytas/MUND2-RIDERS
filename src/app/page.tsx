@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default async function Page({ ...params }: any) {
+export default async function Page() {
   return redirect("/home");
 }

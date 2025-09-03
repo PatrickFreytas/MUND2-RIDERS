@@ -2,9 +2,6 @@ import * as React from "react";
 import { cn, formatPrice } from "@/lib/utils";
 import {useEffect, useReducer} from "react";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
-
 const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, type, ...props }, ref) => {
     return (
@@ -22,8 +19,10 @@ const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLI
 );
 Input.displayName = "Input";
 
-const MoneyInput = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, onChange, disabled, ...props }, ref) => {
+const MoneyInput = React.forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement>
+>(({ className, type, onChange, disabled, ...props }, ref) => {
     const initialValue = props.value ? formatPrice(Number(props.value)) : "";
 
     const [value, setValue] = useReducer((_: any, next: string) => {

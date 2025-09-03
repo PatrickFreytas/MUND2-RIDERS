@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/shared/components/ui/button";
 import { Modal } from "@/shared/components/ui/modal";
-import { DialogContent } from "@/shared/components/ui/dialog";
 
 interface AlertModalProps {
   isOpen: boolean;

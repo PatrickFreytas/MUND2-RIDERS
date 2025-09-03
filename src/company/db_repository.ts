@@ -31,8 +31,11 @@ export const updateCompany = async (
         subdomain: company.subdomain || "some_subdomain",
       },
     };
-  } catch (e: any) {
-    return { success: false, message: e.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -61,8 +64,11 @@ export const getCompany = async (id: string): Promise<response<Company>> => {
         subdomain: company.subdomain || "some_subdomain",
       },
     };
-  } catch (e: any) {
-    return { success: false, message: e.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -74,8 +80,11 @@ export const getLogo = async (
     const logo = await prisma().logo.findUnique({ where: { id: logoId } });
     if (!logo) return { success: false, message: "Logo not found" };
     return { success: true, data: logo };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -102,8 +111,11 @@ export const storeLogo = async (
       },
     });
     return { success: true, data: createdLogo };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -119,8 +131,11 @@ export const removeLogo = async (
       where: { id: logoId, companyId: companyId },
     });
     return { success: true, data: logoResponse.data };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 

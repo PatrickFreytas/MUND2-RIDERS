@@ -4,11 +4,8 @@ import {
   createContext,
   ReactNode,
   useContext,
-  useEffect,
-  useState,
 } from "react";
 import { Company } from "@/company/types";
-import { useUserSession } from "@/lib/use-user-session";
 
 const CompanyContext = createContext<Company | undefined | null>(null);
 

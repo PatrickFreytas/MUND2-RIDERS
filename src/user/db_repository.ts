@@ -13,8 +13,11 @@ export const getUserByEmail = async (
       success: true,
       data: { ...user, companyId: user.companyId || "some_company_id" },
     };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -30,8 +33,11 @@ export const createUser = async (
       success: true,
       data: { ...persistedUser, companyId: persistedUser.id! },
     };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -49,8 +55,11 @@ export const updateUser = async (user: User): Promise<response<User>> => {
         companyId: persistedUser.companyId || "some_company_id",
       },
     };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };
 
@@ -71,7 +80,10 @@ export const updatePassword = async (
         companyId: persistedUser.companyId || "some_company_id",
       },
     };
-  } catch (error: any) {
-    return { success: false, message: error.message };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
   }
 };

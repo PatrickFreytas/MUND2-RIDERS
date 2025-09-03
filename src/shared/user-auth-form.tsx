@@ -71,7 +71,8 @@ export default function UserAuthForm({ action }: UserAuthFormProps) {
         password: data.password,
         redirect: false,
       });
-      window.location.href = callbackUrl || window.location.origin;
+      router.push(callbackUrl || "/dashboard");
+      router.refresh();
     }
   };
 

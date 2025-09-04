@@ -6,9 +6,7 @@ import SignOutRedirection from "@/shared/components/sign-out-redirection";
 import {getCompanyWithOutSession} from "@/user/actions";
 
 export async function LogoImage() {
-  const session = await getSession();
-  if (!session.user) return <SignOutRedirection />;
-  const companyResponse = await getCompany(session.user.companyId);
+  const companyResponse = await getCompanyWithOutSession();
 
   if (!companyResponse.success) {
     notFound();
@@ -25,7 +23,7 @@ export async function LogoImage() {
     <>
       <Image
         fill
-        className="object-left object-contain w-full h-full"
+        className="object-center object-contain w-full h-full"
         alt="Image"
         src={logoUrl}
       />

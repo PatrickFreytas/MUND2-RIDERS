@@ -6,9 +6,9 @@ import {useState, useEffect} from "react";
 export default function Slider() {
   const images = [
     "/banner_ktm.webp",
-    "/file.svg",
-    "/next.svg",
-    "/window.svg",
+    "/banner_1.webp",
+    "/banner_2.webp",
+    "/banner_3.webp",
   ];
 
   const [current, setCurrent] = useState(0);
@@ -16,7 +16,7 @@ export default function Slider() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 3000); // cambia cada 3 segundos
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [images.length]);

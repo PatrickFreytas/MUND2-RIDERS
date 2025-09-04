@@ -12,8 +12,8 @@ const brands = [
     imageUrl: '/bajaj.webp',
   },
   {
-    name: 'Kawasaki',
-    imageUrl: '/globe.svg',
+    name: 'HONDA',
+    imageUrl: '/honda.webp',
   },
 ];
 

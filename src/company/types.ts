@@ -1,3 +1,5 @@
+import {findCompanyWithOutSession} from "@/company/db_repository";
+
 export type Company = {
   id: string;
   name?: string;
@@ -7,6 +9,11 @@ export type Company = {
   subdomain: string;
   logo?: Logo;
 };
+export type CompanyWithOutSession = {
+  id: string;
+  logo?: Logo;
+};
+
 
 export type Logo = {
   id: string;

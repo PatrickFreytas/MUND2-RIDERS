@@ -160,7 +160,6 @@ export const getMany = async ({
   limit,
   pageNumber,
   q,
-  productType,
 }: GetManyParams): Promise<response<Product[]>> => {
   try {
     const query: Prisma.ProductFindManyArgs = {
@@ -312,7 +311,6 @@ export const storePhotos = async (
   );
 
   try {
-    console.log("Guardando foto con datos:", photosToStore);
     const createdPhotos = await Promise.all(
       photosToStore.map(({ name, key, url, size, type }) =>
         prisma().photo.create({

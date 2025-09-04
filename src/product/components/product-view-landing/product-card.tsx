@@ -32,7 +32,6 @@ export default function ProductCard() {
   useEffect(() => {
     searchProduct();
   }, []);
-  console.log(products);
   return (
     <div className="relative">
       {products.length ? (

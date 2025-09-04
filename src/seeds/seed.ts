@@ -20,7 +20,7 @@ const execute = async () => {
       email: "test@gmail.com",
       password: await bcrypt.hash("123456", 10),
       companyId: company.id,
-      name: "aiam",
+      name: "Administrador",
     },
   });
 

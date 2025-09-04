@@ -31,7 +31,6 @@ const execute = async () => {
     data: { companyId: company.id },
   });
 
-  console.log(categoriesResponse);
 };
 
 execute().then(() => {

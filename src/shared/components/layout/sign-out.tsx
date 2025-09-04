@@ -1,8 +1,9 @@
 "use client";
 
 import useSignOut from "@/lib/use-sign-out";
+import Link from "next/link";
 
 export default function SignOut() {
   const signOut = useSignOut();
-  return <div onClick={() => signOut()}>Cerrar sesión</div>;
+  return <Link href="/login" onClick={() => signOut()}>Cerrar sesión</Link>;
 }

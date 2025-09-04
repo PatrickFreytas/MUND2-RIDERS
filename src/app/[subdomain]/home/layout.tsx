@@ -1,6 +1,5 @@
-import CategoriesLoader from "@/category/components/categories-loader";
-import {CategoryStoreProvider} from "@/category/components/category-store-provider";
 import React from "react";
+import {ProductFormProvider} from "@/product/components/product-view-landing/product-searcher-form-provider";
 
 export default function HomeLayout({
   children,
@@ -8,8 +7,8 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <ProductFormProvider>
       {children}
-    </>
+    </ProductFormProvider>
   );
 }

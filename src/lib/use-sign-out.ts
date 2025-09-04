@@ -16,7 +16,7 @@ export default function useSignOut() {
 
     window.location.href =
       process.env.NODE_ENV == "production"
-        ? `https://kogoz.net/login`
+        ? `https://mund-2-riders.vercel.app/login`
         : `http://${window.location.host}/login`;
   };
 }

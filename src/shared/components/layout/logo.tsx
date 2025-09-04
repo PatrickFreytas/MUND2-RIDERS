@@ -3,11 +3,10 @@ import { getSession } from "@/lib/auth";
 import { getCompany } from "@/company/db_repository";
 import { notFound } from "next/navigation";
 import SignOutRedirection from "@/shared/components/sign-out-redirection";
+import {getCompanyWithOutSession} from "@/user/actions";
 
 export async function LogoImage() {
-  const session = await getSession();
-  if (!session.user) return <SignOutRedirection />;
-  const companyResponse = await getCompany(session.user.companyId);
+  const companyResponse = await getCompanyWithOutSession();
 
   if (!companyResponse.success) {
     notFound();

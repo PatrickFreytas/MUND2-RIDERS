@@ -19,7 +19,7 @@ export default function UserForm() {
   const { toast } = useToast();
 
   useEffect(() => {
-    setName(user.name || "");
+    setName(user?.name || "");
   }, [user]);
 
   const onSubmit = async () => {

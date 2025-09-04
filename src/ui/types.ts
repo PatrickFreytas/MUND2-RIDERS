@@ -1,4 +1,5 @@
 import { Icons } from "@/shared/icons";
+import {navItemsHome} from "@/constants/data";
 
 export interface NavItem {
   title: string;
@@ -6,6 +7,15 @@ export interface NavItem {
   disabled?: boolean;
   external?: boolean;
   icon?: keyof typeof Icons;
+  label?: string;
+  description?: string;
+}navItemsHome
+
+export interface navItemHome {
+  title: string;
+  href?: string;
+  disabled?: boolean;
+  external?: boolean;
   label?: string;
   description?: string;
 }

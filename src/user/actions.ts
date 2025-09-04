@@ -6,8 +6,8 @@ import { response } from "@/lib/types";
 import { User } from "@/user/types";
 import { getSession } from "@/lib/auth";
 import bcrypt from "bcrypt";
-import {Company} from "@/company/types";
-import { getCompany as findCompany } from "@/company/db_repository";
+import {Company, CompanyWithOutSession} from "@/company/types";
+import {findCompanyWithOutSession, getCompany as findCompany} from "@/company/db_repository";
 
 export const createUser = async (
   companyId: string,
@@ -65,3 +65,15 @@ export const getCompany = async (): Promise<response<Company>> => {
   }
   return await findCompany(session.user.companyId);
 };
+
+export const getCompanyWithOutSession = async (): Promise<response<CompanyWithOutSession>> => {
+  return await findCompanyWithOutSession();
+};
+
+export const isLoggedInUser = async (): Promise<response<boolean>> => {
+  const session = await getSession();
+  if (!session || !session.user) {
+    return { success: false, message: "No hay usuario autenticado" };
+  }
+  return { success: true, data: true};
+}

@@ -11,6 +11,8 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { sortOptions } from "@/product/constants";
 import { getSession } from "@/lib/auth";
+import {getCompany, getCompanyWithOutSession} from "@/user/actions";
+import {signOut as nextAuthSignOut} from "next-auth/react";
 
 export const revalidate = 0;
 
@@ -27,19 +29,18 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const { user } = await getSession();
-  if (!user) {
-    return NextResponse.json(
-      { success: false, message: "Unauthenticated user" },
-      { status: 401 },
-    );
+  const [companyResponse] = await Promise.all([
+    getCompanyWithOutSession(),
+  ]);
+
+  if (!companyResponse.success) {
+    return;
   }
 
   const param = searchParams.get("param");
   const categoryId = searchParams.get("categoryId");
   const sortKey = searchParams.get("sortBy") as SortKey | null;
   const limit = searchParams.get("limit");
-  const productType = searchParams.get("productType") || undefined;
 
   const sortBy: ProductSortParams =
     sortKey && sortOptions[sortKey]
@@ -48,11 +49,10 @@ export async function GET(req: Request) {
 
   const response = await getMany({
     q: param,
-    companyId: user.companyId,
+    companyId: companyResponse.data.id,
     sortBy: sortBy,
     limit: limit ? parseInt(limit) : undefined,
     categoryId,
-    productType: ensureProductType(productType),
   });
 
   return NextResponse.json(response, { status: response.success ? 200 : 404 });

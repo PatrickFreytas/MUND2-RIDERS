@@ -34,7 +34,7 @@ export async function GET(req: Request) {
   ]);
 
   if (!companyResponse.success) {
-    return;
+    return NextResponse.json(companyResponse, { status: 401 });
   }
 
   const param = searchParams.get("param");
@@ -57,9 +57,3 @@ export async function GET(req: Request) {
 
   return NextResponse.json(response, { status: response.success ? 200 : 404 });
 }
-
-const ensureProductType = (
-  type?: string,
-): TypeSingleProductType | undefined => {
-  return SingleProductType
-};

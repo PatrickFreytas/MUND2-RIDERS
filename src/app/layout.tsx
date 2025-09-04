@@ -26,7 +26,7 @@ export default async function RootLayout({
   const session = await getServerSession(authConfig)
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
     <body
       className={cn(
         "min-h-screen bg-background font-sans antialiased",

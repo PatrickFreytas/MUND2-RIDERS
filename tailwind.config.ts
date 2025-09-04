@@ -1,10 +1,10 @@
 import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
+import { fontFamily } from "tailwindcss/defaultTheme";
 import { withUt } from "uploadthing/tw";
 import tailwindcssAnimate from "tailwindcss-animate";
 
 const config = {
-  darkMode: "class",
+  darkMode: ["class"],
   content: ["./src/**/*.{ts,tsx,js,jsx}"],
   prefix: "",
   theme: {
@@ -82,12 +82,12 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "move-from-left-to-right":
-          "move-from-left-to-right .2s ease-out forwards",
+            "move-from-left-to-right .2s ease-out forwards",
         "move-from-up-to-down": "move-from-up-to-down .2s ease-out forwards",
         "fade": "fade .2s ease-out forwards"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-sans)", ...fontFamily.sans],
       },
     },
   },

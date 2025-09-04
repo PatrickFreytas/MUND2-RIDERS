@@ -26,7 +26,7 @@ export async function UserNav() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-white text-black border border-gray-300 rounded-md shadow-md" align="end" forceMount>
+      <DropdownMenuContent className="w-56 text-black border border-gray-300 rounded-md shadow-md" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">Usuario</p>

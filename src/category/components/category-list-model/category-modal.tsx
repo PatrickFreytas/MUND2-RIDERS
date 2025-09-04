@@ -31,7 +31,7 @@ export default function CategoriesModal({
           <List />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-96 sm:h-[429.5] w-full flex flex-col items-center p-0 bg-white">
+      <DialogContent className="sm:max-w-96 sm:h-[429.5] w-full flex flex-col items-center p-0 ">
         <table className="min-w-96 rounded-2xl">
           <thead>
           <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">

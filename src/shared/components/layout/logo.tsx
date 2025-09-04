@@ -3,7 +3,6 @@ import { getSession } from "@/lib/auth";
 import { getCompany } from "@/company/db_repository";
 import { notFound } from "next/navigation";
 import SignOutRedirection from "@/shared/components/sign-out-redirection";
-import {getCompanyWithOutSession} from "@/user/actions";
 
 export async function LogoImage() {
   const session = await getSession();

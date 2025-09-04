@@ -1,4 +1,5 @@
 import {LogoImage} from "@/shared/components/layout-landing/logo";
+import {NavBar} from "@/shared/components/layout-landing/nav-bar";
 
 export default function Header() {
   return (
@@ -19,29 +20,7 @@ export default function Header() {
             className="flex-grow max-w-lg rounded-md px-4 py-2 bg-white text-black"
           />
 
-          <ul className="flex gap-6 text-base font-medium items-center">
-            <li className="cursor-pointer hover:text-orange-600 transition">
-              MUNDO <span className="text-red-600 font-bold">RID2</span> TU MEJOR OPCION
-            </li>
-            <li className="cursor-pointer">
-              <div
-                className="w-28 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition text-black">
-                Productos
-              </div>
-            </li>
-            <li className="cursor-pointer">
-              <div
-                className="w-28 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition text-black">
-                Servicios
-              </div>
-            </li>
-            <li className="cursor-pointer">
-              <div
-                className="w-28 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition text-black">
-                Contáctenos
-              </div>
-            </li>
-          </ul>
+          <NavBar />
         </div>
 
         <ul className="flex gap-6 text-base font-bold px-6 py-2 border-t border-gray-800">

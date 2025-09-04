@@ -69,3 +69,11 @@ export const getCompany = async (): Promise<response<Company>> => {
 export const getCompanyWithOutSession = async (): Promise<response<CompanyWithOutSession>> => {
   return await findCompanyWithOutSession();
 };
+
+export const isLoggedInUser = async (): Promise<response<boolean>> => {
+  const session = await getSession();
+  if (!session || !session.user) {
+    return { success: false, message: "No hay usuario autenticado" };
+  }
+  return { success: true, data: true};
+}

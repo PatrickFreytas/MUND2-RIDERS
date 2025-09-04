@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 
-import { Company, Logo } from "@/company/types";
+import {Company, CompanyWithOutSession, Logo} from "@/company/types";
 import { response } from "@/lib/types";
 
 export const updateCompany = async (
@@ -29,6 +29,30 @@ export const updateCompany = async (
         phone: updatedCompany.phone || undefined,
         email: updatedCompany.email || undefined,
         subdomain: company.subdomain || "some_subdomain",
+      },
+    };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: 'Unknown error' };
+  }
+};
+export const findCompanyWithOutSession = async (): Promise<response<CompanyWithOutSession>> => {
+  try {
+    const company = await prisma().company.findFirst({include: { logos: true }});
+
+    if (!company) {
+      return { success: false, message: "Company not found" };
+    }
+
+    const { logos, id,...companyData } = company;
+
+    return {
+      success: true,
+      data: {
+        id: id,
+        logo: logos[0],
       },
     };
   } catch (error: unknown) {

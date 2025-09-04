@@ -1,4 +1,5 @@
 import Image from "next/image";
+import {LogoImage} from "@/shared/components/layout/logo";
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
 
         <div className="flex items-center px-6 py-3 gap-6">
           <div className="w-28 h-12 relative flex-shrink-0">
-            <Image src="/globe.svg" alt="Logo" fill className="object-contain"/>
+            <LogoImage/>
           </div>
 
           <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">

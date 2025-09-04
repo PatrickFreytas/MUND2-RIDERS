@@ -15,7 +15,7 @@ import Link from "next/link";
 
 export async function UserNav() {
   const session = await getServerSession();
-
+  console.log(session?.user?.name)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,7 +29,7 @@ export async function UserNav() {
       <DropdownMenuContent className="w-56 text-black border border-gray-300 rounded-md shadow-md" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Usuario</p>
+            <p className="text-sm font-medium leading-none">{session?.user?.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user?.email}
             </p>

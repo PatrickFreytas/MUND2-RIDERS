@@ -25,8 +25,10 @@ export default function ProductList() {
       return;
     }
 
-    setProducts(response.data);
+    const productsFilter = response.data.filter(product => product.categories.some(category => category.name === "Destacados"))
+    setProducts(productsFilter);
   };
+
 
   useEffect(() => {
     searchProduct();

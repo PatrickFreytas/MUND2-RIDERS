@@ -11,12 +11,7 @@ export const config = {
 
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
-  const hostname = req.headers.get("host")!;
-
-  const subdomain =
-    process.env.PREVIEW === "true" ? "fantastidog" : hostname.split(".")[0];
-
-  const token = await getToken({ req });
+  const token = await getToken({req});
 
   if (
     !token &&
@@ -26,10 +21,5 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  return NextResponse.rewrite(
-    new URL(
-      `/${subdomain}${url.pathname}?${url.searchParams.toString()}`,
-      req.url,
-    ),
-  );
+  return NextResponse.next();
 }

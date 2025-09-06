@@ -2,6 +2,7 @@ import Footer from "@/shared/footer/footer";
 import Slide from "@/shared/slide/slide";
 import Brand from "@/shared/brand/brand";
 import ProductList from "@/shared/components/layout-landing/product-list";
+import ProductGreatList from "@/shared/components/layout-landing/product-great-slider";
 
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
           Nuestro mejores productos
         </p>
       </section>
+      <ProductGreatList />
       <ProductList/>
       <Footer/>
     </>

@@ -71,90 +71,88 @@ export default function CategoryContent({
     setIsEditing(true);
   };
   return (
-    <>
-      <tr key={category.id} className=" text-black hover:bg-gray-100">
-        <td className="py-3 px-6 text-left whitespace-nowrap">
-          {isEditing ? (
+    <tr key={category.id} className=" text-black hover:bg-gray-100">
+      <td className="py-3 px-6 text-left whitespace-nowrap">
+        {isEditing ? (
+          <div className="flex justify-between items-center">
+            <div className="flex text-left">
+              <Form {...form}>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({field}) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Input
+                            id="category"
+                            placeholder="Nombre de categoría..."
+                            className="col-span-4 -ml-2"
+                            {...field}
+                          />
+                        </div>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </Form>
+            </div>
+            <div className="flex justify-center space-x-4 pr-2">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Save
+                      type="button"
+                      className="text-gray-600"
+                      size={16}
+                      onClick={form.handleSubmit(onSubmit)}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Guardar cambio</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Ban
+                      type="button"
+                      color="red"
+                      size={16}
+                      onClick={() => setIsEditing(false)}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Cancelar</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+        ) : (
+          <>
             <div className="flex justify-between items-center">
-              <div className="flex text-left">
-                <Form {...form}>
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Input
-                              id="category"
-                              placeholder="Nombre de categoría..."
-                              className="col-span-4 -ml-2"
-                              {...field}
-                            />
-                          </div>
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                </Form>
-              </div>
-              <div className="flex justify-center space-x-4 pr-2">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Save
-                        type="button"
-                        className="text-gray-600"
-                        size={16}
-                        onClick={form.handleSubmit(onSubmit)}
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Guardar cambio</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Ban
-                        type="button"
-                        color="red"
-                        size={16}
-                        onClick={() => setIsEditing(false)}
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Cancelar</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+              <div className="flex text-left">{category.name}</div>
+              <div className="flex justify-center space-x-4">
+                <div onClick={handleEditClick} className="cursor-pointer">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Edit className="h-4 w-4 text-gray-600"/>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Editar</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <DeleteCategoryModal category={category}/>
               </div>
             </div>
-          ) : (
-            <>
-              <div className="flex justify-between items-center">
-                <div className="flex text-left">{category.name}</div>
-                <div className="flex justify-center space-x-4">
-                  <div onClick={handleEditClick} className="cursor-pointer">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Edit className="h-4 w-4 text-gray-600" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Editar</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                  <DeleteCategoryModal category={category} />
-                </div>
-              </div>
-            </>
-          )}
-        </td>
-      </tr>
-    </>
+          </>
+        )}
+      </td>
+    </tr>
   );
 }

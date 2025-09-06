@@ -1,17 +1,20 @@
 "use client";
 
+import {toast} from "@/shared/components/ui/use-toast";
+import {getMany} from "@/product/api_repository";
 import {
   useProductFormActions,
   useProductFormStore
 } from "@/product/components/product-view-landing/product-searcher-form-provider";
-import {getMany} from "@/product/api_repository";
-import {toast} from "@/shared/components/ui/use-toast";
-import {useEffect} from "react";
-import ProductCard from "@/product/components/product-view-landing/product-card";
+import {useEffect, useState} from "react";
+import EmblaCarousel from "@/shared/components/layout-landing/embla-auto-scroll/embla-carousel";
+import {EmblaOptionsType} from "embla-carousel";
 
-export default function ProductList() {
+export default function ProductGreatList() {
   const { setProducts } = useProductFormActions();
   const products = useProductFormStore((store) => store.products);
+
+  const OPTIONS: EmblaOptionsType = { loop: true }
 
   const searchProduct = async () => {
     const response = await getMany();
@@ -35,14 +38,8 @@ export default function ProductList() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center mb-6">
-      {products.length ? (
-        products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))
-      ) : (
-        <div className="text-center">No hay productos</div>
-      )}
-    </div>
+    <>
+      <EmblaCarousel products={products} options={OPTIONS}/>
+    </>
   );
 }

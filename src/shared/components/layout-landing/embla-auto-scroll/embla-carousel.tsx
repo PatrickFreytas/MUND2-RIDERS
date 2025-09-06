@@ -75,7 +75,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             products.map((product) => (
               <div
                 key={product.id}
-                className="translate-z-0 flex flex-[0_0_25%] min-w-0 pl-4 h-auto items-stretch"
+                className="translate-z-0 flex flex-[0_0_80%] sm:flex-[0_0_45%] md:flex-[0_0_33.3333%] lg:flex-[0_0_25%] min-w-0 pl-4 h-auto items-stretch"
               >
                 <ProductCard product={product} />
               </div>

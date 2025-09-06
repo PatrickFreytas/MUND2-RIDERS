@@ -36,7 +36,10 @@ export default function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
 
-        <Button className="text-white bg-green-500 hover:bg-green-600" onClick={() => window.open("https://wa.me/51999999999", "_blank")}>
+        <Button
+          className="mt-3 inline-flex items-center gap-2 text-white bg-green-500 hover:bg-green-600 px-4 py-1.5 rounded-md text-sm"
+          onClick={() => window.open("https://wa.me/51999999999", "_blank")}
+        >
           <FaWhatsapp className="text-lg"/>
           Comprar
         </Button>

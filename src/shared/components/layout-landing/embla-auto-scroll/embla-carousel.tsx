@@ -68,15 +68,14 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi])
 
   return (
-    <div className="max-w-[48rem] mx-auto">
+    <div className="w-screen mx-auto mb-6">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex touch-pan-y ml-[-1rem]">
           {Array.isArray(products) &&
             products.map((product) => (
               <div
                 key={product.id}
-                className="translate-z-0 flex-[0_0_45%] min-w-0 pl-4"
-                style={{ height: '19rem' }}
+                className="translate-z-0 flex flex-[0_0_25%] min-w-0 pl-4 h-auto items-stretch"
               >
                 <ProductCard product={product} />
               </div>
